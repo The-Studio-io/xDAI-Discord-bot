@@ -23,8 +23,10 @@ Check your Deposit Address. You will receive a DM.
 `!withdraw` [ Coming Soon ]
 You can withdraw to external account. Withdrawal fee is a penny.
 
+
+## Extra credit
 `!donate <xDAI_Amount>`
-Donate xDAI to Studio Bot to show some support.
+You can even use this donate command to give a bit of xDAI to the Studio Bot and show some support.
 
 
 
