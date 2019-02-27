@@ -39,3 +39,17 @@ To begin to build the bot:
 npm docs node-telegram-bot-api -- pop up the docs in the browser
 
 npm install node-telegram-bot-api -- install the bot
+
+
+## Team
+
+Rabtai - lead bot developer
+
+Dave Craige - project manager / design
+
+Perminder Klair - developer
+
+Yashu Mittal - developer
+
+Samyak - developer
+
