@@ -1,8 +1,7 @@
 # 🤖xDAI-Discord-bot
 Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 
-
-
+![Image title](https://cl.ly/6d5b9bbbf689/Screen%20Shot%202019-02-27%20at%201.43.21%20AM.png)
 
 ## Commands
 Available Commands:
