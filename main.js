@@ -265,7 +265,6 @@ async function tipCommand(argument, msg){
     }
 }
 
-<<<<<<< HEAD
 //Withdraw xDAI to external accounts
 async function withdrawCommand(argument,msg){
     //we should be defining this in array, and loop it and use it for other fucntions so no redundency
