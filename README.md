@@ -4,10 +4,13 @@ Repo for an xDAI Discord bot
 Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 
 
-!Help commands
+
 
 ## Commands
 Available Commands:
+
+`!Help `
+Will show all the commands
 
 `!bal`
 Check your balance. You will receive a DM.
