@@ -5,20 +5,19 @@ Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 
 
 ## Simple Commands in Discord
-It is easy to control the bot.  Simply use these available commands:
+It is easy to control the bot.  Simply use these five main commands:
 
 `!Help `
-Will show all the commands
+Will show all of the bot commands
 
 `!tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar`
-Send xDAI to another studio member.
+Send xDAI to another Studio member.
 
 `!bal`
-Check your balance. You will receive a DM.
+Check your balance. You will receive a DM with your balance.
 
 `!deposit`
-Check your Deposit Address. You will receive a DM.
-
+Check your Deposit Address. You will receive a DM with an address you can send xDAI to.
 
 `!withdraw` [ Coming Soon ]
 You can withdraw to external account. Withdrawal fee is a penny.
