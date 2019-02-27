@@ -35,7 +35,7 @@ rClient.on('connect', function() {
     console.log('Redis Server is connected');
 });
 
-//Connect to Didsord
+//Connect to Discord
 const Discord = require('discord.js')
 const dClient = new Discord.Client()//Discord Client
 //If error in Discord 
@@ -75,7 +75,7 @@ dClient.on('message', async msg => {
     return;
 });
 
-//create user in redis database
+//Create user in redis database
 async function createUser(userId){
     //create deposit address (we are running xDAI chain using Parity eth client)
     const depositAddress= await web3.eth.personal.newAccount("studio");
@@ -144,7 +144,7 @@ async function processCommand(msg) {
      }
 }
 
-//Donate xDAI to bot
+//Donate xDAI to the bot
 async function donateCommand(argument,msg){
     //define all the values
     if(argument[0]==="penny"){
@@ -158,14 +158,14 @@ async function donateCommand(argument,msg){
     }else if(argument[0]==='dollar'){
         argument[0]=Number(1);
     }
-    //If no argument provited, amount is not numbrer,and it is less then 0.01 (has to be at least penny)
+    //If no argument provited, amount is not number,and it is less then 0.01 (has to be at least a penny)
     if(argument.length< 1 || isNaN(argument[0]) || argument[0]<0.01 ){
         await support.wrongArgument(msg,"Not a right format use: **!donate <xDAI_Amount>**");
         return;
     }else{
-        //For now, we are using just 2 decimals, but xDAI support 18 decimals(eth format)
+        //For now, we are using just 2 decimals, but xDAI supports 18 decimals (eth format)
         let xDAIToDonate=Number(argument[0]).toFixed(2);//convert to number, and only 2 digit (XDAI=US$)
-        //this is not a good practice using Number and parse, but for now it works
+        //NOTE: this is not a good practice using Number and parse, but for now it works
         //We should be using bigINT and no FLOAT, decimals should be only for display not for database
         xDAIToDonate=parseFloat(xDAIToDonate) //convert to float
         const userBalance=parseFloat(await rClient.hgetAsync(msg.author.id, "balance"));
@@ -215,7 +215,7 @@ async function helpCommand(argument, msg) {
     });
 }
 
-//tip other people
+//Tip other people
 async function tipCommand(argument, msg){
     //we should be defining this in array, and loop it and use it for other fucntions so no redundency
 	//Define all the US dollars Coin
@@ -230,7 +230,7 @@ async function tipCommand(argument, msg){
 	}else if(argument[1]==='dollar'){
 	    argument[1]=Number(1);
 	}
-    //tagged member should be a discord member, and should not be bot 
+    //Tagged member should be a Discord member, and should not be bot 
    if(argument.length< 1 || !msg.mentions.members.first() || isNaN(argument[1]) || argument[1]<0.01 || msg.author.toString()==msg.mentions.members.first() || msg.mentions.members.first().bot) {
         //send users message that the argument is wrong
         msg.channel.send("Not a right format/not a user/user is a bot/you can't send yourself, total amount has to be at least .01 xDAI, Use: **!tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar**");
@@ -262,7 +262,7 @@ async function tipCommand(argument, msg){
     }
 }
 
-//check use's deposit, it will be checked every 1 minute
+//Check users deposit, it will be checked every 1 minute
 async function checkUserDeposit(){
     //get all the members fromt the database
     const members= await rClient.smembersAsync("registeredUsers");
