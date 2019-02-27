@@ -4,6 +4,8 @@ Desc: xDAI tip bot for studio
 Date: 02/21/2019
 Dev: rabTAI
 */
+
+//Defines that JavaScript code should be executed in "strict mode"
 'use strict';
 
 //Load the config file to get all the values
@@ -113,6 +115,7 @@ async function processCommand(msg) {
             case "withdraw"://Let user withdraw xDAI
                 //We need to work on it, I had problem withdrawing, Problem: no response from block chain
                 msg.channel.send(msg.author.toString() + " StudioBot is in test phase, It will be implemented in the future.");
+                //withdrawCommand(argument,msg);
                 break;
             case "bal": 
                 //retrives balance from Redis
@@ -160,7 +163,7 @@ async function donateCommand(argument,msg){
     }
     //If no argument provited, amount is not numbrer,and it is less then 0.01 (has to be at least penny)
     if(argument.length< 1 || isNaN(argument[0]) || argument[0]<0.01 ){
-        await support.wrongArgument(msg,"Not a right format use: **!donate <xDAI_Amount>**");
+        await msg.author.send("Not a right format use: **!donate <xDAI_Amount>**");
         return;
     }else{
         //For now, we are using just 2 decimals, but xDAI support 18 decimals(eth format)
@@ -175,7 +178,7 @@ async function donateCommand(argument,msg){
             msg.channel.send("**Thanks:** much appreciated for the donation. :heart:");//Heart emoji :)
         }else{
             //Don't have enough balance
-            msg.channel.send("Low Balance", "You don't have enough Balance.");
+            msg.channel.send("**Low Balance:** You don't have enough Balance.");
             return;
         }
     }
@@ -262,6 +265,54 @@ async function tipCommand(argument, msg){
     }
 }
 
+//Withdraw xDAI to external accounts
+async function withdrawCommand(argument,msg){
+    //we should be defining this in array, and loop it and use it for other fucntions so no redundency
+    //Define all the US dollars Coin
+    if(argument[1]==="penny"){
+      argument[1]=Number(0.01);
+    }else if(argument[1]==='nickel'){
+      argument[1]=Number(0.05);
+    }else if(argument[1]==='dime'){
+           argument[1]=Number(0.10);    
+    }else if(argument[1]==='quarter'){
+        argument[1]=Number(0.25);
+    }else if(argument[1]==='dollar'){
+        argument[1]=Number(1);
+    }
+    //we need to check the format of the xDAI addres before we withdraw xDAI
+    //we also need to check if address belongs to user or any other users in studio (can use tip)
+    //It has to be external address
+    // if(argument[0])==somehing like wrong xDAI address{
+    //     await msg.author.send("**Wrong xDAI Address:** Please provide correct xDAI Address.")
+    //      return;
+    // }
+    if(argument.length< 1 || isNaN(argument[1]) || argument[1]<0.01) {
+        //send users message that the argument is wrong
+        await support.wrongArgument(msg,"Not a right format use: **!withdraw <xDAI_Address> <xDAI_Amount>**");
+        return;
+    }else{ 
+        let xDAIToWithdraw=Number(argument[1]).toFixed(2);//convert to number, and only 2 digit (XDAI=US$)
+        xDAIToWithdraw=parseFloat(xDAIToWithdraw+0.01); //Fee is added (a penny)
+        //Get user's balance from the HexdB and converet it into number
+        const userBalance=parseFloat(await rClient.hgetAsync(msg.author.id, "balance"));
+        if (userBalance>=xDAIToWithdraw){//check if users have enough to withdraw
+            //Transaction has to be in wei format
+            const xDaiToGwi=web3.utils.toWei(xDAIToWithdraw-0.01);//convert the withdraw ammount to Wei before send
+            const txId= await web3.eth.sendTransaction({
+                from: conf.mainAccount,//save your main account in config.js
+                to: argument[0],//address to withdraw
+                value: xDaiToGwi
+                });
+            if(txId){//If transaction is successful then tx will be returned
+                msg.author.reply("**Successful Withdraw:** Your Withdrawal tx is " +txId);
+            }
+        }else{
+        //error 
+            msg.channel.send("**Low Balance:** You don't have enough Balance.");
+            return;
+        }
+}
 //check use's deposit, it will be checked every 1 minute
 async function checkUserDeposit(){
     //get all the members fromt the database

@@ -2,6 +2,7 @@
 
 # 🤖xDAI Discord Bot
 Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
+Add this bot to your server: https://discordapp.com/oauth2/authorize?&client_id=513319931018870795&scope=bot&permissions=0
 
 ## How to Setup a Bot
 > Create a Bot in Disord >> link here >> https://discordapp.com/developers/applications/ >> more links for guide, how to
