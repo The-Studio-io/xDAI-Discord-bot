@@ -57,5 +57,7 @@ Perminder Klair - developer
 
 Yashu Mittal - developer
 
+Johny Crypto - designer and logo work
+
 Samyak - developer
 
