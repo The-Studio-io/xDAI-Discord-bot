@@ -199,15 +199,15 @@ async function helpCommand(argument, msg) {
                         },
                         {
                             name: "**!deposit**",
-                            value: "Check your Deposit Address. You will receive a DM."
+                            value: "Check your deposit address. You will receive a DM.  You can then send xDAI to that address."
                         },
                         {
                             name: "**!tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar**",
-                            value: "Send xDAI to another studio member."
+                            value: "Send xDAI to another Studio member."
                         },
                         {
                             name: "**!withdraw** Comming Soon",
-                            value: "You can withdraw to external account. Withdrawal fee is a penny."
+                            value: "You can use this command to withdraw to external account. Withdrawal fee is a penny."
                         },
                         {
                             name: "**!donate <xDAI_Amount>**",
