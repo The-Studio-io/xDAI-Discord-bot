@@ -6,7 +6,7 @@ Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 
 !Help commands
 
-##Commands
+## Commands
 Available Commands:
 
 !bal
@@ -27,7 +27,7 @@ Donate xDAI to Studio Bot to show some support.
 
 
 
-##Mac users we will start with NodeJS
+## Mac users we will start with NodeJS
 
 Here is a great guide on how to get NodeJS installed.
 ✔️ https://www.codementor.io/mercurial/how-to-install-node-js-on-macos-sierra-mphz41ekk
