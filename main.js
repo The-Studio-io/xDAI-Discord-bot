@@ -23,6 +23,9 @@ var Web3 = require('web3');
 // create an instance of web3 using the HTTP provider.
 const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545')); 
 
+// Import help module
+import { help } from './help';
+
 //Create Redis: Redis is a fast and efficient in-memory key-value store. It is also known as a data structure server, 
 //as the keys can contain strings, lists, sets, hashes and other data structures. 
 var redis = require('redis');
@@ -103,7 +106,7 @@ async function processCommand(msg) {
         //use switch case to handle each command
         switch(primaryCommand){
             case "help": //displays help command
-                helpCommand(argument,msg);//calls the function, pass argument, and msg (discord)
+                help(argument, msg); // calls the function, pass argument, and msg (discord)
                 break;
             case "deposit": //let user deposit xDAI
                 //Retrives the depositAddrress from Redis hash store in user's discord ID
@@ -182,40 +185,6 @@ async function donateCommand(argument,msg){
             return;
         }
     }
-}
-//Display help 
-async function helpCommand(argument, msg) {
-    //sends embeded message
-    //we should be using embeded message for all the send out message
-    msg.channel.send({
-        embed: {
-            title: "Commands",
-            color: 3447003,
-            description: "Available Commands:", 
-            fields: [
-                        {
-                            name: "**!bal**",
-                            value: "Check your balance. You will receive a DM."
-                        },
-                        {
-                            name: "**!deposit**",
-                            value: "Check your Deposit Address. You will receive a DM."
-                        },
-                        {
-                            name: "**!tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar**",
-                            value: "Send xDAI to another studio member."
-                        },
-                        {
-                            name: "**!withdraw** Comming Soon",
-                            value: "You can withdraw to external account. Withdrawal fee is a penny."
-                        },
-                        {
-                            name: "**!donate <xDAI_Amount>**",
-                            value: "*Donate xDAI to Studio Bot to show some support.*"
-                       }
-                    ]
-        }
-    });
 }
 
 //Tip other people
