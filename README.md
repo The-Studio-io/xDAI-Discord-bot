@@ -3,13 +3,16 @@
 # 🤖xDAI Discord Bot
 Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 
-## How to Setup a Bot
+## How to set up the bot
 > Create a Bot in Disord >> link here >> https://discordapp.com/developers/applications/ >> more links for guide, how to
+
 > Run xDAI blockchain locally using Parity eth client >> link here >> https://github.com/poanetwork/wiki/wiki/POA-Installation (this is for POA, make sure you change it to xDAI BlockChain)
+
 > Clone this git
+
 > Create local file > config.js in a same folder as main.js and add this code
 
-'//Defines that JavaScript code should be executed in "strict mode"
+//Defines that JavaScript code should be executed in "strict mode"
 'use strict'
 //Config file that holds all the important information
 //put inside .gitignore
