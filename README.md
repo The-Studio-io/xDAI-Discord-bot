@@ -9,7 +9,7 @@ Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 ## Commands
 Available Commands:
 
-!bal
+`<addr>!bal`<addr>
 Check your balance. You will receive a DM.
 
 !deposit
