@@ -1,8 +1,24 @@
 ![Image title](https://cl.ly/6d5b9bbbf689/Screen%20Shot%202019-02-27%20at%201.43.21%20AM.png)
 
-# 🤖xDAI Discord bot
+# 🤖xDAI Discord Bot
 Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 
+## How to Setup a Bot
+> Create a Bot in Disord >> link here >> https://discordapp.com/developers/applications/ >> more links for guide, how to
+> Run xDAI blockchain locally using Parity eth client >> link here >> https://github.com/poanetwork/wiki/wiki/POA-Installation (this is for POA, make sure you change it to xDAI BlockChain)
+> Clone this git
+> Create local file > config.js in a same folder as main.js and add this code
+
+'//Defines that JavaScript code should be executed in "strict mode"
+'use strict'
+//Config file that holds all the important information
+//put inside .gitignore
+module.exports={
+botToken: "Your_bot_token",
+}'
+
+> Inside "xDAI-Discord-bot" folder in command (CLI) > Run >> npm install (this should install all the dependencies)
+> run>> node main.js
 
 ## Five Simple commands in Discord
 It is easy to control the bot.  Simply use these five main commands:
@@ -28,23 +44,9 @@ You can withdraw to external account. Withdrawal fee is a penny.
 You can even use this donate command to give a bit of xDAI to the Studio Bot and show some support.
 
 
-
-
-## Mac users we will start with NodeJS
-
-Here is a great guide on how to get NodeJS installed.
-✔️ https://www.codementor.io/mercurial/how-to-install-node-js-on-macos-sierra-mphz41ekk
-
-To begin to build the bot:
-
-npm docs node-telegram-bot-api -- pop up the docs in the browser
-
-npm install node-telegram-bot-api -- install the bot
-
-
 ## Team
 
-Rabtai - lead bot developer
+rabTAI - Lead Bot developer (AKA Bot Scientist)
 
 Dave Craige - project manager / design
 
