@@ -314,10 +314,8 @@ async function withdrawCommand(argument,msg){
             return;
         }
 }
+
 //check use's deposit, it will be checked every 1 minute
-=======
-//Check users deposit, it will be checked every 1 minute
->>>>>>> 3f704e6e89fe946ff65832a3db9862d99ad2504b
 async function checkUserDeposit(){
     //get all the members fromt the database
     const members= await rClient.smembersAsync("registeredUsers");
