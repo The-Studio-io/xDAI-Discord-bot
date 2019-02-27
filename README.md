@@ -52,7 +52,7 @@ You can even use this donate command to give a bit of xDAI to the Studio Bot and
 
 rabTAI - Lead Bot developer (AKA Bot Scientist)
 
-Dave Craige - project manager / design
+Dave Craige http://www.twitter.com/DaveCraige - project manager / design
 
 Perminder Klair - developer
 
