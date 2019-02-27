@@ -1,10 +1,10 @@
 ![Image title](https://cl.ly/6d5b9bbbf689/Screen%20Shot%202019-02-27%20at%201.43.21%20AM.png)
 
-# 🤖xDAI-Discord-bot
+# 🤖xDAI Discord bot
 Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 
 
-## Five Simple Commands in Discord
+## Five Simple commands in Discord
 It is easy to control the bot.  Simply use these five main commands:
 
 `!Help `
