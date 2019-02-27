@@ -10,16 +10,17 @@ Available Commands:
 `!Help `
 Will show all the commands
 
+`!tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar`
+Send xDAI to another studio member.
+
 `!bal`
 Check your balance. You will receive a DM.
 
 `!deposit`
 Check your Deposit Address. You will receive a DM.
 
-`!tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar`
-Send xDAI to another studio member.
 
-`!withdraw Comming Soon`
+`!withdraw` [ Coming Soon ]
 You can withdraw to external account. Withdrawal fee is a penny.
 
 `!donate <xDAI_Amount>`
