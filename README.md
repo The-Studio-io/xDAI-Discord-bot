@@ -1,6 +1,4 @@
 # 🤖xDAI-Discord-bot
-Repo for an xDAI Discord bot
-
 Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 
 
