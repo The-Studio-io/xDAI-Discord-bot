@@ -4,8 +4,8 @@
 Let's build a xDAI bot for Discord. Easily send tips to your friends on Discord.
 
 
-## Commands
-Available Commands:
+## Simple Commands in Discord
+It is easy to control the bot.  Simply use these available commands:
 
 `!Help `
 Will show all the commands
