@@ -16,11 +16,6 @@ sequelize
 		console.log("Connection has been established successfully.")
 	})
 	.catch(err => {
-dClient.on('ready', () => {
-  console.log(`Discord Logged in as ${dClient.user.tag}!`);
-  //  Set bot status
-  dClient.user.setActivity("tipping people.")
-});
 // Event handler for Discord, it will be executed everytime there is a message
 dClient.on('message', async msg => {
 	//  Prevent bot from responding to its own messages
@@ -336,6 +331,12 @@ setInterval(async () => {
 	}
 // repeat every 1 minute
 },60000)
+dClient.on("ready", () => {
+	console.log(`Discord Logged in as ${dClient.user.tag}!`)
+	dClient.user.setActivity("/help", {
+		type: "LISTENING",
+	})
+})
 
 dClient.login(process.env.bot_token)
 
