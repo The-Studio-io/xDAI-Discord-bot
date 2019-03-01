@@ -18,10 +18,6 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-	//  Prevent bot from responding to its own messages
-    if (msg.author === dClient.user) {
-        return;
-    }
     //  Check if the bot's user was tagged in the message
     if (msg.content.includes(dClient.user.toString())) {
        //  Send acknowledgement message
@@ -340,4 +336,8 @@ dClient.login(process.env.bot_token)
 
 // Execute everytime there is a message
 dClient.on("message", async msg => {
+	// Prevent from responding own messages
+	if (msg.author === dClient.user) {
+		return
+	}
 })
