@@ -1,6 +1,7 @@
 // NOTE Load the .env file
 require('dotenv').config()
 
+const sequelize = require('./util/database');
 // Bluebird is a fully featured promise library
 // Promisification converts an existing promise-unaware API to a promise-returning API.
 const promise = require("bluebird");
@@ -23,6 +24,13 @@ rClient.on('error', function(err){
 rClient.on('connect', function() {
 	console.log('Redis Server is connected');
 });
+sequelize.authenticate()
+	.then(() => {
+		console.log('Connection has been established successfully.');
+	})
+	.catch(err => {
+		console.error('Unable to connect to the database:', err);
+	});
 
 // Connect to Discord
 const Discord = require('discord.js')
