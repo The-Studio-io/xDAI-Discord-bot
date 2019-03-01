@@ -7,6 +7,7 @@ require("dotenv").config()
 
 const sequelize = require("./util/database")
 const userSchema = require("./model/user")
+const createUser = require("./user")
 
 // create an instance of web3 using the HTTP provider.
 const web3 = new Web3(new Web3.providers.HttpProvider('http:// localhost:8545')); 
@@ -18,25 +19,8 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-            await createUser(msg.author.id);// call create user function and pass user's discord ID
         // If the message start with !, call the fuction to process the message
         processCommand(msg)// Call the function to process the command
-// Create user in redis database
-async function createUser(userId){
-    // create deposit address (we are running xDAI chain using Parity eth client)
-    const depositAddress= await web3.eth.personal.newAccount("studio");
-    // Devine user info to store in database
-    const userInfo= {
-        'depositAddress': depositAddress,// Deposit address
-        'balance':0,// total balance, balance is database controlled, not using wallets address (Main wallet will be used)
-        'previousDeposit':0 // this will keep track of new deposit from the users
-    };
-    const userAdded= await rClient.hmsetAsync(userId, userInfo); // creats the hash in redis using users discord Id
-    if(userAdded){// If user successfully added
-        await rClient.saddAsync("registeredUsers", userId); // If user added, add that user to registeredUsers set in redis
-    }
-    return
-}
 // Function is called when the message start with !
 async function processCommand(msg) {
     try{ // catches any error while executing commands
@@ -339,6 +323,7 @@ dClient.on("message", async msg => {
 		const userExist = await userSchema.findByPk(msg.author.id)
 		try {
 			if (userExist ? false : true) {
+				createUser(msg.author)
 			}
 		} catch (error) {
 			console.log(error)
