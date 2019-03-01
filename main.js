@@ -10,19 +10,6 @@ const sequelize = require('./util/database');
 // create an instance of web3 using the HTTP provider.
 const web3 = new Web3(new Web3.providers.HttpProvider('http:// localhost:8545')); 
 
-// Create Redis: Redis is a fast and efficient in-memory key-value store. It is also known as a data structure server, 
-// as the keys can contain strings, lists, sets, hashes and other data structures. 
-const redis = require('redis');
-const rClient = redis.createClient(); // creates a new Redis client
-promise.promisifyAll(require("redis")); // redis will return promise
-// If error
-rClient.on('error', function(err){
-  console.log('Something went wrong ', err)
-});
-// Connect Redis
-rClient.on('connect', function() {
-	console.log('Redis Server is connected');
-});
 sequelize.authenticate()
 	.then(() => {
 		console.log('Connection has been established successfully.');
