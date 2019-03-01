@@ -1,32 +1,22 @@
-/*
-Program: main.js
-Desc: xDAI tip bot for studio
-Date: 02/21/2019
-Dev: rabTAI
-*/
-
-// Defines that JavaScript code should be executed in "strict mode"
-'use strict';
-
 // Load the config file to get all the values
 // config file hold all the information that is needed for Bot
 // this fill will not be pushed to github, so you need to create local config.js file
 // It holds discord bot token, you have to have a token to run the bot
-var conf = require('./config.js');
+const conf = require('./config.js');
 
 // Bluebird is a fully featured promise library
 // Promisification converts an existing promise-unaware API to a promise-returning API.
-var promise = require("bluebird");
+const promise = require("bluebird");
 
 // We wil be using web3 to connect to parity
-var Web3 = require('web3');
+const Web3 = require('web3');
 // create an instance of web3 using the HTTP provider.
 const web3 = new Web3(new Web3.providers.HttpProvider('http:// localhost:8545')); 
 
 // Create Redis: Redis is a fast and efficient in-memory key-value store. It is also known as a data structure server, 
 // as the keys can contain strings, lists, sets, hashes and other data structures. 
-var redis = require('redis');
-var rClient = redis.createClient(); // creates a new Redis client
+const redis = require('redis');
+const rClient = redis.createClient(); // creates a new Redis client
 promise.promisifyAll(require("redis")); // redis will return promise
 // If error
 rClient.on('error', function(err){
@@ -322,7 +312,7 @@ async function checkUserDeposit(){
         // Retrive previous deposit
         let previousDeposit= await rClient.hgetAsync(member, "previousDeposit");
         // check the last xDAI block
-        var lastBlock=await web3.eth.getBlockNumber();
+        const lastBlock=await web3.eth.getBlockNumber();
         // gets the new deposit of the user on latest Block
         let newDeposit=await web3.eth.getBalance(await rClient.hgetAsync(member, "depositAddress"),lastBlock);// Wait for 6 confirmations
         // xDAI is 18 digits, and we receive deposit in 18 digits(eth) format
