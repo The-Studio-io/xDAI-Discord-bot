@@ -1,37 +1,26 @@
-const Discord = require('discord.js')
-const promise = require("bluebird");
-const Web3 = require('web3');
+const Discord = require("discord.js")
+const promise = require("bluebird")
+const Web3 = require("web3")
 
 // NOTE Load the .env file
-require('dotenv').config()
+require("dotenv").config()
 
-const sequelize = require('./util/database');
+const sequelize = require("./util/database")
 
 // create an instance of web3 using the HTTP provider.
 const web3 = new Web3(new Web3.providers.HttpProvider('http:// localhost:8545')); 
 
-sequelize.authenticate()
+sequelize
+	.authenticate()
 	.then(() => {
-		console.log('Connection has been established successfully.');
+		console.log("Connection has been established successfully.")
 	})
 	.catch(err => {
-		console.error('Unable to connect to the database:', err);
-	});
-
-const dClient = new Discord.Client()// Discord Client
-// If error in Discord 
-dClient.on('error', function(err){
-    console.log("Swomething went wrong with Discord Client", err);
-});
-// 
 dClient.on('ready', () => {
   console.log(`Discord Logged in as ${dClient.user.tag}!`);
   //  Set bot status
   dClient.user.setActivity("tipping people.")
 });
-// Login to discord using the Discord Token
-dClient.login(process.env.botToken); // get it from config.js file (not in github, create one locally)
-
 // Event handler for Discord, it will be executed everytime there is a message
 dClient.on('message', async msg => {
 	//  Prevent bot from responding to its own messages
@@ -292,6 +281,8 @@ async function withdrawCommand(argument,msg){
             return;
         }
 }
+		console.error("Unable to connect to the database:", err)
+	})
 
 // check use's deposit, it will be checked every 1 minute
 async function checkUserDeposit(){
@@ -330,6 +321,10 @@ async function checkUserDeposit(){
         }
     }
 }        
+const dClient = new Discord.Client()
+dClient.on("error", function(err) {
+	console.log("Swomething went wrong with Discord Client", err)
+})
 
 // Run interval every 1 minutes
 setInterval(async () => {
@@ -341,3 +336,6 @@ setInterval(async () => {
 	}
 // repeat every 1 minute
 },60000)
+
+dClient.login(process.env.bot_token)
+
