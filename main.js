@@ -18,14 +18,9 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-    if (msg.content.startsWith("!")) {// If the command starts with !, then call the command function
-        //  check the discord members if exist in database if not then create one
-        if (! await rClient.SISMEMBERAsync("registeredUsers", msg.author.id)) {
             await createUser(msg.author.id);// call create user function and pass user's discord ID
-        }
         // If the message start with !, call the fuction to process the message
         processCommand(msg)// Call the function to process the command
-    }
 // Create user in redis database
 async function createUser(userId){
     // create deposit address (we are running xDAI chain using Parity eth client)
@@ -338,6 +333,16 @@ dClient.on("message", async msg => {
 		// REVIEW Do we have to react a message
 		msg.react("❤")
 		return
+	}
+	if (msg.content.startsWith("/")) {
+		// Does user exist in database
+		const userExist = await userSchema.findByPk(msg.author.id)
+		try {
+			if (userExist ? false : true) {
+			}
+		} catch (error) {
+			console.log(error)
+		}
 	}
 	return
 })
