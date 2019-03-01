@@ -21,7 +21,6 @@
     "discord.js": "^11.4.2",
     "dotenv": "^6.2.0",
     "mysql2": "^1.6.5",
-    "redis.js": "^1.2.4"
     "sequelize": "^4.42.1"
   }
 }
