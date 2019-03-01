@@ -1,13 +1,12 @@
+const Discord = require('discord.js')
+const promise = require("bluebird");
+const Web3 = require('web3');
+
 // NOTE Load the .env file
 require('dotenv').config()
 
 const sequelize = require('./util/database');
-// Bluebird is a fully featured promise library
-// Promisification converts an existing promise-unaware API to a promise-returning API.
-const promise = require("bluebird");
 
-// We wil be using web3 to connect to parity
-const Web3 = require('web3');
 // create an instance of web3 using the HTTP provider.
 const web3 = new Web3(new Web3.providers.HttpProvider('http:// localhost:8545')); 
 
@@ -32,8 +31,6 @@ sequelize.authenticate()
 		console.error('Unable to connect to the database:', err);
 	});
 
-// Connect to Discord
-const Discord = require('discord.js')
 const dClient = new Discord.Client()// Discord Client
 // If error in Discord 
 dClient.on('error', function(err){
