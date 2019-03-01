@@ -18,8 +18,6 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-// Event handler for Discord, it will be executed everytime there is a message
-dClient.on('message', async msg => {
 	//  Prevent bot from responding to its own messages
     if (msg.author === dClient.user) {
         return;
@@ -40,8 +38,6 @@ dClient.on('message', async msg => {
         processCommand(msg)// Call the function to process the command
     }
     return;
-});
-
 // Create user in redis database
 async function createUser(userId){
     // create deposit address (we are running xDAI chain using Parity eth client)
@@ -342,3 +338,6 @@ dClient.on("ready", () => {
 
 dClient.login(process.env.bot_token)
 
+// Execute everytime there is a message
+dClient.on("message", async msg => {
+})
