@@ -18,13 +18,6 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-    //  Check if the bot's user was tagged in the message
-    if (msg.content.includes(dClient.user.toString())) {
-       //  Send acknowledgement message
-       msg.reply("Did you call me! Try !help")
-       msg.react("❤")
-       return;
-    }
     if (msg.content.startsWith("!")) {// If the command starts with !, then call the command function
         //  check the discord members if exist in database if not then create one
         if (! await rClient.SISMEMBERAsync("registeredUsers", msg.author.id)) {
@@ -33,7 +26,6 @@ sequelize
         // If the message start with !, call the fuction to process the message
         processCommand(msg)// Call the function to process the command
     }
-    return;
 // Create user in redis database
 async function createUser(userId){
     // create deposit address (we are running xDAI chain using Parity eth client)
@@ -340,4 +332,12 @@ dClient.on("message", async msg => {
 	if (msg.author === dClient.user) {
 		return
 	}
+	// Mentioning the bot
+	if (msg.content.includes(dClient.user.toString())) {
+		msg.reply("Did you call me! Try using one of these available commands!")
+		// REVIEW Do we have to react a message
+		msg.react("❤")
+		return
+	}
+	return
 })
