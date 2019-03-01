@@ -6,6 +6,7 @@ const Web3 = require("web3")
 require("dotenv").config()
 
 const sequelize = require("./util/database")
+const userSchema = require("./model/user")
 
 // create an instance of web3 using the HTTP provider.
 const web3 = new Web3(new Web3.providers.HttpProvider('http:// localhost:8545')); 
@@ -14,6 +15,7 @@ sequelize
 	.authenticate()
 	.then(() => {
 		console.log("Connection has been established successfully.")
+		userSchema.sync()
 	})
 	.catch(err => {
 // Event handler for Discord, it will be executed everytime there is a message
