@@ -1,8 +1,5 @@
-// Load the config file to get all the values
-// config file hold all the information that is needed for Bot
-// this fill will not be pushed to github, so you need to create local config.js file
-// It holds discord bot token, you have to have a token to run the bot
-const conf = require('./config.js');
+// NOTE Load the .env file
+require('dotenv').config()
 
 // Bluebird is a fully featured promise library
 // Promisification converts an existing promise-unaware API to a promise-returning API.
@@ -41,7 +38,7 @@ dClient.on('ready', () => {
   dClient.user.setActivity("tipping people.")
 });
 // Login to discord using the Discord Token
-dClient.login(conf.botToken); // get it from config.js file (not in github, create one locally)
+dClient.login(process.env.botToken); // get it from config.js file (not in github, create one locally)
 
 // Event handler for Discord, it will be executed everytime there is a message
 dClient.on('message', async msg => {
@@ -290,7 +287,7 @@ async function withdrawCommand(argument,msg){
             // Transaction has to be in wei format
             const xDaiToGwi=web3.utils.toWei(xDAIToWithdraw-0.01);// convert the withdraw ammount to Wei before send
             const txId= await web3.eth.sendTransaction({
-                from: conf.mainAccount,// save your main account in config.js
+                from: process.env.mainAccount,// save your main account in config.js
                 to: argument[0],// address to withdraw
                 value: xDaiToGwi
                 });
