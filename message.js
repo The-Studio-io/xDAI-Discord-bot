@@ -42,6 +42,7 @@ const formatMessage = async message => {
 					console.log(error)
 				}
 				break
+			case "send":
 			case "tip":
 				sendTo(messageArgument, message)
 				break
