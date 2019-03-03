@@ -12,6 +12,13 @@ const formatMessage = async message => {
 			case "help":
 				helpMessage(message)
 				break
+			default:
+				message.channel.send({
+					embed: {
+						description:
+							"I didn't understand the command. Try running `/help` command.",
+					},
+				})
 		}
 	} catch (err) {
 		console.log("Problem In Commands: " + err.message)

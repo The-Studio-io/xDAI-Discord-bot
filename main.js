@@ -50,12 +50,6 @@ sequelize
             case "donate":// donate xDAI to tip bot for further development
                 donateCommand(argument,msg);
                 break;
-            default:// if command does not match, then send error to users
-                msg.channel.send({
-                        embed: {
-                            description: "I didn't understand the command. Try !help"
-                        }
-                    });
 // Donate xDAI to the bot
 async function donateCommand(argument,msg){
     // define all the values
