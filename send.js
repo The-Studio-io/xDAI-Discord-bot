@@ -1,7 +1,7 @@
 const convertUSCoins = require("./usCoins")
 const userSchema = require("./model/user")
 
-const tip = async (argument, message) => {
+const send = async (argument, message) => {
 	let sendMoneyValue
 	if (isNaN(argument[1])) {
 		sendMoneyValue = convertUSCoins(argument[1])
@@ -75,4 +75,4 @@ const tip = async (argument, message) => {
 	}
 }
 
-module.exports = tip
+module.exports = send
