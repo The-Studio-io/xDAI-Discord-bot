@@ -48,40 +48,6 @@ async function donateCommand(argument,msg){
         }
     }
 }
-// Display help 
-async function helpCommand(argument, msg) {
-    // sends embeded message
-    // we should be using embeded message for all the send out message
-    msg.channel.send({
-        embed: {
-            title: "Commands",
-            color: 3447003,
-            description: "Available Commands:", 
-            fields: [
-                        {
-                            name: "**!bal**",
-                            value: "Check your balance. You will receive a DM."
-                        },
-                        {
-                            name: "**!deposit**",
-                            value: "Check your deposit address. You will receive a DM.  You can then send xDAI to that address."
-                        },
-                        {
-                            name: "**!tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar**",
-                            value: "Send xDAI to another Studio member."
-                        },
-                        {
-                            name: "**!withdraw** Comming Soon",
-                            value: "You can use this command to withdraw to external account. Withdrawal fee is a penny."
-                        },
-                        {
-                            name: "**!donate <xDAI_Amount>**",
-                            value: "*Donate xDAI to Studio Bot to show some support.*"
-                       }
-                    ]
-        }
-    });
-}
 
 // Tip other people
 async function tipCommand(argument, msg){
