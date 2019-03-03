@@ -6,7 +6,7 @@ const helpMessage = message => {
 			description: "Available Commands",
 			fields: [
 				{
-					name: "**/bal**",
+					name: "**/bal** or **/balance**",
 					value: "Check your balance.",
 				},
 				{

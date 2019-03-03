@@ -25,17 +25,6 @@ sequelize
                 msg.channel.send(msg.author.toString() + " StudioBot is in test phase, It will be implemented in the future.");
                 // withdrawCommand(argument,msg);
                 break;
-            case "bal": 
-                // retrives balance from Redis
-                const userBalance = await rClient.hgetAsync(msg.author.id, "balance");// get the balance of the user
-                if(userBalance){ // if balance returns value
-                    msg.channel.send(msg.author.toString() + ": Check your DM");
-                    const botMessage=await msg.author.send("Your balance is " + userBalance + " xDAI");// send private message
-                   
-                }else{
-                    msg.channel.send("Sorry" + msg.author.toString() + " could not get your balance at this time, try again.")
-                }
-                break;
             case "tip": 
                 // send xDAI to another user
                 tipCommand(argument, msg);
