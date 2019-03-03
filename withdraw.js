@@ -1,7 +1,6 @@
-const withdrawMoney = (message) => {
+const withdrawMoney = message => {
 	message.channel.send(
-		message.author.toString() +
-		"Stay tuned! We'll add this feature soon 😉."
+		message.author.toString() + " Stay tuned! We'll add this feature soon 😉."
 	)
 }
 
