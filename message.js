@@ -12,6 +12,12 @@ const formatMessage = async message => {
 			case "help":
 				helpMessage(message)
 				break
+			case "deposit":
+				const depositAddress = "depositAddress"
+				message.channel.send(message.author.toString() + ": Check your DM")
+				message.author.send("Your deposit address is:")
+				message.author.send("`" + depositAddress + "`")
+				break
 			default:
 				message.channel.send({
 					embed: {

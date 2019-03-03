@@ -20,13 +20,6 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-            case "deposit": // let user deposit xDAI
-                // Retrives the depositAddrress from Redis hash store in user's discord ID
-                const depositAddress= await rClient.hgetAsync(msg.author.id, "depositAddress");
-                msg.channel.send(msg.author.toString() + ": Check your DM");
-                msg.author.send("Your deposit address is:");
-                msg.author.send(depositAddress);
-                break;
             case "withdraw":// Let user withdraw xDAI
                 // We need to work on it, I had problem withdrawing, Problem: no response from block chain
                 msg.channel.send(msg.author.toString() + " StudioBot is in test phase, It will be implemented in the future.");
