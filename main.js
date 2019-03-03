@@ -8,6 +8,7 @@ require("dotenv").config()
 const sequelize = require("./util/database")
 const userSchema = require("./model/user")
 const createUser = require("./user")
+const filterMessage = require("./message")
 
 // create an instance of web3 using the HTTP provider.
 const web3 = new Web3(new Web3.providers.HttpProvider('http:// localhost:8545')); 
@@ -19,15 +20,6 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-        // If the message start with !, call the fuction to process the message
-        processCommand(msg)// Call the function to process the command
-// Function is called when the message start with !
-async function processCommand(msg) {
-    try{ // catches any error while executing commands
-        let fullCommand = msg.content.substr(1).toLowerCase(); //  Remove the leading exclamation mark
-        let splitCommand = fullCommand.split(" "); //  Split the message up in to pieces for each space
-        let primaryCommand = splitCommand[0]; //  The first word directly after the exclamation is the command
-        let argument = splitCommand.slice(1); //  All other words are arguments/parameters/options for the command
         // use switch case to handle each command
         switch(primaryCommand){
             case "help": // displays help command
@@ -70,11 +62,6 @@ async function processCommand(msg) {
                         }
                     });
         }
-    }catch(err){// if problem 
-        console.log("Problem In Commands: " + err.message);
-     }
-}
-
 // Donate xDAI to the bot
 async function donateCommand(argument,msg){
     // define all the values
@@ -325,6 +312,7 @@ dClient.on("message", async msg => {
 			if (userExist ? false : true) {
 				createUser(msg.author)
 			}
+			await filterMessage(msg)
 		} catch (error) {
 			console.log(error)
 		}
