@@ -20,11 +20,6 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-        // use switch case to handle each command
-        switch(primaryCommand){
-            case "help": // displays help command
-                helpCommand(argument,msg);// calls the function, pass argument, and msg (discord)
-                break;
             case "deposit": // let user deposit xDAI
                 // Retrives the depositAddrress from Redis hash store in user's discord ID
                 const depositAddress= await rClient.hgetAsync(msg.author.id, "depositAddress");
@@ -61,7 +56,6 @@ sequelize
                             description: "I didn't understand the command. Try !help"
                         }
                     });
-        }
 // Donate xDAI to the bot
 async function donateCommand(argument,msg){
     // define all the values

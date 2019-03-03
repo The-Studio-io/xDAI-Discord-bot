@@ -1,3 +1,5 @@
+const helpMessage = require("./help")
+
 const formatMessage = async message => {
 	try {
 		//  Remove command initializer
@@ -5,6 +7,12 @@ const formatMessage = async message => {
 		let splitMessage = fullMessage.split(" ")
 		let primaryCommand = splitMessage[0]
 		let messageArgument = splitMessage.slice(1)
+
+		switch (primaryCommand) {
+			case "help":
+				helpMessage(message)
+				break
+		}
 	} catch (err) {
 		console.log("Problem In Commands: " + err.message)
 	}
