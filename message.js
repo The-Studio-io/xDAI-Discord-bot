@@ -2,6 +2,7 @@ const userSchema = require("./model/user")
 
 const helpMessage = require("./help")
 const donateToBot = require("./donate")
+const sendTo = require("./send")
 const withdrawMoney = require("./withdraw")
 
 const formatMessage = async message => {
@@ -40,6 +41,9 @@ const formatMessage = async message => {
 					)
 					console.log(error)
 				}
+				break
+			case "tip":
+				sendTo(messageArgument, message)
 				break
 			case "donate":
 				donateToBot(message)

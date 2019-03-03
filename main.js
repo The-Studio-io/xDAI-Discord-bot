@@ -20,10 +20,6 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-            case "tip": 
-                // send xDAI to another user
-                tipCommand(argument, msg);
-                break;
 // Donate xDAI to the bot
 async function donateCommand(argument,msg){
     // If no argument provited, amount is not number,and it is less then 0.01 (has to be at least a penny)
@@ -49,39 +45,6 @@ async function donateCommand(argument,msg){
     }
 }
 
-// Tip other people
-async function tipCommand(argument, msg){
-    // Tagged member should be a Discord member, and should not be bot 
-   if(argument.length< 1 || !msg.mentions.members.first() || isNaN(argument[1]) || argument[1]<0.01 || msg.author.toString()==msg.mentions.members.first() || msg.mentions.members.first().bot) {
-        // send users message that the argument is wrong
-        msg.channel.send("Not a right format/not a user/user is a bot/you can't send yourself, total amount has to be at least .01 xDAI, Use: **!tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar**");
-        return;
-    }else{ 
-        let xDAIToSend=Number(argument[1]).toFixed(2);// convert to number, and only 2 digit (XDAI=US$)
-        xDAIToSend=parseFloat(xDAIToSend)
-        // Get user's balance from the HexdB and converet it into number
-        const userBalance=parseFloat(await rClient.hgetAsync(msg.author.id, "balance"));
-        if (userBalance>=xDAIToSend){// check if users have enough to send
-            // get the id of mentioned user
-            const mentionedMemberID=msg.mentions.members.first().toString().substr(2).slice(0, -1);
-            // check if member is already registered, if not then create a member (redis database)
-            if (! await rClient.SISMEMBERAsync("registeredUsers", mentionedMemberID)) {
-                await createUser(mentionedMemberID);
-            }
-            // All good, send xDAI to other person
-            // add xDAI to receiver
-            await rClient.HINCRBYFLOATAsync(mentionedMemberID, "balance", xDAIToSend);
-            // Substrack xDAI from sender
-            await rClient.HINCRBYFLOATAsync(msg.author.id, "balance", -xDAIToSend);
-            const botMessage= await msg.channel.send ("**xDAI Sent:** " + msg.author.username+ " sent " + xDAIToSend + " xDAI to " + dClient.users.get(mentionedMemberID).username);
-            botMessage.react("💸")// react with flying money
-        }else{
-            // error 
-            msg.channel.send("**Low Balance:** You don't have enough Balance.");
-            return;
-        }
-    }
-}
 		console.error("Unable to connect to the database:", err)
 	})
 
