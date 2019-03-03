@@ -40,9 +40,6 @@ sequelize
                 // send xDAI to another user
                 tipCommand(argument, msg);
                 break;
-            case "donate":// donate xDAI to tip bot for further development
-                donateCommand(argument,msg);
-                break;
 // Donate xDAI to the bot
 async function donateCommand(argument,msg){
     // define all the values

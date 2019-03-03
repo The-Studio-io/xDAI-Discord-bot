@@ -1,4 +1,5 @@
 const helpMessage = require("./help")
+const donateToBot = require("./donate")
 
 const formatMessage = async message => {
 	try {
@@ -17,6 +18,9 @@ const formatMessage = async message => {
 				message.channel.send(message.author.toString() + ": Check your DM")
 				message.author.send("Your deposit address is:")
 				message.author.send("`" + depositAddress + "`")
+				break
+			case "donate":
+				donateToBot(message)
 				break
 			default:
 				message.channel.send({
