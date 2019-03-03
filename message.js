@@ -2,6 +2,7 @@ const userSchema = require("./model/user")
 
 const helpMessage = require("./help")
 const donateToBot = require("./donate")
+const withdrawMoney = require("./withdraw")
 
 const formatMessage = async message => {
 	try {
@@ -20,6 +21,9 @@ const formatMessage = async message => {
 				message.channel.send(message.author.toString() + ": Check your DM")
 				message.author.send("Your deposit address is:")
 				message.author.send("`" + depositAddress + "`")
+				break
+			case "withdraw":
+				withdrawMoney(message)
 				break
 			case "balance":
 			case "bal":

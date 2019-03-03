@@ -20,11 +20,6 @@ sequelize
 		userSchema.sync()
 	})
 	.catch(err => {
-            case "withdraw":// Let user withdraw xDAI
-                // We need to work on it, I had problem withdrawing, Problem: no response from block chain
-                msg.channel.send(msg.author.toString() + " StudioBot is in test phase, It will be implemented in the future.");
-                // withdrawCommand(argument,msg);
-                break;
             case "tip": 
                 // send xDAI to another user
                 tipCommand(argument, msg);
@@ -145,55 +140,6 @@ async function tipCommand(argument, msg){
             return;
         }
     }
-}
-
-// Withdraw xDAI to external accounts
-async function withdrawCommand(argument,msg){
-    // we should be defining this in array, and loop it and use it for other fucntions so no redundency
-    // Define all the US dollars Coin
-    if(argument[1]==="penny"){
-      argument[1]=Number(0.01);
-    }else if(argument[1]==='nickel'){
-      argument[1]=Number(0.05);
-    }else if(argument[1]==='dime'){
-           argument[1]=Number(0.10);    
-    }else if(argument[1]==='quarter'){
-        argument[1]=Number(0.25);
-    }else if(argument[1]==='dollar'){
-        argument[1]=Number(1);
-    }
-    // we need to check the format of the xDAI addres before we withdraw xDAI
-    // we also need to check if address belongs to user or any other users in studio (can use tip)
-    // It has to be external address
-    //  if(argument[0])==somehing like wrong xDAI address{
-    //      await msg.author.send("**Wrong xDAI Address:** Please provide correct xDAI Address.")
-    //       return;
-    //  }
-    if(argument.length< 1 || isNaN(argument[1]) || argument[1]<0.01) {
-        // send users message that the argument is wrong
-        await support.wrongArgument(msg,"Not a right format use: **!withdraw <xDAI_Address> <xDAI_Amount>**");
-        return;
-    }else{ 
-        let xDAIToWithdraw=Number(argument[1]).toFixed(2);// convert to number, and only 2 digit (XDAI=US$)
-        xDAIToWithdraw=parseFloat(xDAIToWithdraw+0.01); // Fee is added (a penny)
-        // Get user's balance from the HexdB and converet it into number
-        const userBalance=parseFloat(await rClient.hgetAsync(msg.author.id, "balance"));
-        if (userBalance>=xDAIToWithdraw){// check if users have enough to withdraw
-            // Transaction has to be in wei format
-            const xDaiToGwi=web3.utils.toWei(xDAIToWithdraw-0.01);// convert the withdraw ammount to Wei before send
-            const txId= await web3.eth.sendTransaction({
-                from: process.env.mainAccount,// save your main account in config.js
-                to: argument[0],// address to withdraw
-                value: xDaiToGwi
-                });
-            if(txId){// If transaction is successful then tx will be returned
-                msg.author.reply("**Successful Withdraw:** Your Withdrawal tx is " +txId);
-            }
-        }else{
-        // error 
-            msg.channel.send("**Low Balance:** You don't have enough Balance.");
-            return;
-        }
 }
 		console.error("Unable to connect to the database:", err)
 	})
