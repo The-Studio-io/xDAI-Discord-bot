@@ -26,18 +26,6 @@ sequelize
                 break;
 // Donate xDAI to the bot
 async function donateCommand(argument,msg){
-    // define all the values
-    if(argument[0]==="penny"){
-      argument[0]=Number(0.01);
-    }else if(argument[0]==='nickel'){
-      argument[0]=Number(0.05);
-    }else if(argument[0]==='dime'){
-           argument[0]=Number(0.10);    
-    }else if(argument[0]==='quarter'){
-        argument[0]=Number(0.25);
-    }else if(argument[0]==='dollar'){
-        argument[0]=Number(1);
-    }
     // If no argument provited, amount is not number,and it is less then 0.01 (has to be at least a penny)
     if(argument.length< 1 || isNaN(argument[0]) || argument[0]<0.01 ){
         await msg.author.send("Not a right format use: **!donate <xDAI_Amount>**");
@@ -97,19 +85,6 @@ async function helpCommand(argument, msg) {
 
 // Tip other people
 async function tipCommand(argument, msg){
-    // we should be defining this in array, and loop it and use it for other fucntions so no redundency
-	// Define all the US dollars Coin
-	if(argument[1]==="penny"){
-	  argument[1]=Number(0.01);
-	}else if(argument[1]==='nickel'){
-	  argument[1]=Number(0.05);
-	}else if(argument[1]==='dime'){
-	       argument[1]=Number(0.10);    
-	}else if(argument[1]==='quarter'){
-	    argument[1]=Number(0.25);
-	}else if(argument[1]==='dollar'){
-	    argument[1]=Number(1);
-	}
     // Tagged member should be a Discord member, and should not be bot 
    if(argument.length< 1 || !msg.mentions.members.first() || isNaN(argument[1]) || argument[1]<0.01 || msg.author.toString()==msg.mentions.members.first() || msg.mentions.members.first().bot) {
         // send users message that the argument is wrong
