@@ -1,5 +1,6 @@
 const usCoins = argument => {
 	switch (argument) {
+		case "penni":
 		case "penny":
 			return Number(0.01)
 		case "nickel":
