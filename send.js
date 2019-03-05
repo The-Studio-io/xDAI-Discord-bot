@@ -13,12 +13,12 @@ const send = async (argument, message) => {
 	let receiverDiscordData = message.mentions.members.first().user
 
 	if (senderDiscordData.id === receiverDiscordData.id) {
-		message.channel.send("You cannot send money to yourself")
+		message.channel.send("I am sorry.  You cannot send money to yourself")
 	}
 
 	// REVIEW Test this condition
 	if (receiverDiscordData.bot) {
-		message.channel.send("Bots are free birds and doesn't need money.")
+		message.channel.send("Bots are not materialistic, they don't need money.")
 	}
 
 	const userData = await userSchema.findByPk(receiverDiscordData.id)
@@ -35,7 +35,7 @@ const send = async (argument, message) => {
 	}
 
 	if (parseInt(sendMoneyValue) <= 0.01) {
-		message.channel.send("You cannot send xDAI less than 0.01")
+		message.channel.send("You cannot send less that 0.01 in xDAI")
 	}
 
 	const userBalance = (await userSchema.findByPk(senderDiscordData.id)).balance
@@ -71,7 +71,7 @@ const send = async (argument, message) => {
 				receiverDiscordData
 		)
 	} else {
-		message.channel.send("**Low Balance:** You don't have enough xDAI.")
+		message.channel.send("**Low Balance:** I am sorry, you don't have enough xDAI.")
 	}
 }
 
