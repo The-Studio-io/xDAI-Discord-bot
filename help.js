@@ -16,7 +16,7 @@ const helpMessage = message => {
 				{
 					name: "**/withdraw**",
 					value:
-						"Withdraw to external account. This feature is currently unavaiable.",
+						"Withdraw to external account. NOTE: This feature is currently unavaiable.",
 				},
 				{
 					name: "**/donate <xDAI_Amount>**",
