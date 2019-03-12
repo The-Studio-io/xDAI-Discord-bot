@@ -27,30 +27,30 @@ botToken: "Your_bot_token",
 ## Five Simple commands in Discord
 It is easy to control the bot.  Simply use these five main commands:
 
-`!Help `
+`/Help `
 Will show all of the bot commands
 
-`!tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar`
+`/tip @userName <xDAI_Amount>/penny/nickel/dime/quarter/dollar`
 Send xDAI to another Studio member.
 
-`!bal`
+`/bal`
 Check your balance. You will receive a DM with your balance.
 
-`!deposit`
+`/deposit`
 Check your Deposit Address. You will receive a DM with an address you can send xDAI to.
 
-`!withdraw` [ Coming Soon ]
+`/withdraw` [ Coming Soon ]
 You can withdraw to external account. Withdrawal fee is a penny.
 
 
 ## Extra credit
-`!donate <xDAI_Amount>`
+`/donate <xDAI_Amount>`
 You can even use this donate command to give a bit of xDAI to the Studio Bot and show some support.
 
 
 ## Team
 
-rabTAI - Lead Bot developer (AKA Bot Scientist)
+RabTAI - Lead Bot developer (AKA Bot Scientist)
 
 Dave Craige http://www.twitter.com/DaveCraige - project manager / design
 
